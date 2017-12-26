@@ -39,7 +39,10 @@ pause;
 %% ======================= Part 2: Plotting =======================
 fprintf('Plotting Data ...\n')
 data = load('ex1data1.txt');
-X = data(:, 1); y = data(:, 2);
+X = data(:, 1); y = data(:, 2);%注意是圆括号
+%取出  训练数据  的第一列和第二列，单位都是万，X=97by1，y=97by1
+%The first column is the population of a city 
+%  and the second column is the profit of a food truck in that city.
 m = length(y); % number of training examples
 
 % Plot Data
@@ -51,8 +54,10 @@ pause;
 
 %% =================== Part 3: Cost and Gradient descent ===================
 
-X = [ones(m, 1), data(:,1)]; % Add a column of ones to x
+X = [ones(m, 1), data(:,1)]; % Add a column of ones to x；为X左边拓展一列1，即x0都为1.方括号
+% X=97by2
 theta = zeros(2, 1); % initialize fitting parameters
+%theta=2by1
 
 % Some gradient descent settings
 iterations = 1500;
@@ -60,7 +65,7 @@ alpha = 0.01;
 
 fprintf('\nTesting the cost function ...\n')
 % compute and display initial cost
-J = computeCost(X, y, theta);
+J = computeCost(X, y, theta);%J=scalar
 fprintf('With theta = [0 ; 0]\nCost computed = %f\n', J);
 fprintf('Expected cost value (approx) 32.07\n');
 
@@ -74,7 +79,7 @@ pause;
 
 fprintf('\nRunning Gradient Descent ...\n')
 % run gradient descent
-theta = gradientDescent(X, y, theta, alpha, iterations);
+theta = gradientDescent(X, y, theta, alpha, iterations);  %theta=initialTheta，
 
 % print theta to screen
 fprintf('Theta found by gradient descent:\n');
